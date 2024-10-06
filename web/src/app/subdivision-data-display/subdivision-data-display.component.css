@@ -1,0 +1,23 @@
+.header-filter {
+    display: flex;
+    align-items: baseline;
+    padding: 10px;
+
+    .mat-form-field {
+        padding-left: 10px;
+    }
+}
+
+table.mat-table {
+    display: table;
+    width: 100%;
+    padding: 10px;
+    
+    .mat-cell {
+        color: black;
+    }
+}
+
+.mat-paginator {
+    padding:10px;
+}
