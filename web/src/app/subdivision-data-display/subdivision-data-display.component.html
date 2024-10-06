@@ -1,1 +1,54 @@
-<p>Display the subdivision data here!</p>
+<div class="header-filter">
+  <h3>Filter by Subdivision Status Code</h3>
+  <mat-form-field>
+    <mat-label>Please Select</mat-label>
+    <mat-select (selectionChange)="onFilterChanged($event)">
+      <mat-option *ngFor="let filter of filterValues" [value]="filter.value">
+        {{ filter.viewValue }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+<table mat-table [dataSource]="displayedData">
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef>id</th>
+    <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="code">
+    <th mat-header-cell *matHeaderCellDef>Code</th>
+    <td mat-cell *matCellDef="let element">{{ element.code }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef>Name</th>
+    <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="subdivisionStatusCode">
+    <th mat-header-cell *matHeaderCellDef>Subdivision Status Code</th>
+    <td mat-cell *matCellDef="let element">
+      {{ element.subdivisionStatusCode }}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="nearMapImageDate">
+    <th mat-header-cell *matHeaderCellDef>Satellite Image Date</th>
+    <td mat-cell *matCellDef="let element">{{ element.nearMapImageDate }}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
+
+<mat-paginator
+  [length]="filteredData.length"
+  [pageSize]="pageSize"
+  [pageIndex]="pageIndex"
+  [pageSizeOptions]="[5, 10, 20, 50, 100]"
+  showFirstLastButtons
+  aria-label="Select page"
+  (page)="handlePageEvent($event)"
+>
+</mat-paginator>
